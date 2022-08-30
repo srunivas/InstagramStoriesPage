@@ -32,351 +32,6 @@ class MyApp extends StatelessWidget {
 
 
 
-//
-// class RegisterPage extends StatefulWidget {
-//   const RegisterPage({Key? key}) : super(key: key);
-//
-//   @override
-//   State<RegisterPage> createState() => _RegisterPageState();
-// }
-//
-// class _RegisterPageState extends State<RegisterPage> {
-//
-//
-//   void postDetails()
-//   async
-//   {
-//     var request = http.MultipartRequest('POST', Uri.parse('http://10.0.2.2:5000/RegisterPage'));
-//     request.fields.addAll({
-//       'Username': 'srinivas',
-//       'Password': '******',
-//       'EmailID': 'srinivaskokku3372@gmail.com',
-//       'MobileNumber': '123456789'
-//     });
-//     request.files.add(await http.MultipartFile.fromPath('ProfileImage', image.path));
-//
-//     http.StreamedResponse response = await request.send();
-//
-//     if (response.statusCode == 200) {
-//       print(await response.stream.bytesToString());
-//     }
-//     else {
-//       print(response.reasonPhrase);
-//     }
-//
-//
-//   }
-//   var image;
-//   var file;
-//
-//   void selectImage()
-//   async{
-//     var request = http.MultipartRequest('POST', Uri.parse('http://10.0.2.2:4000'));
-//     request.files.add(await http.MultipartFile.fromPath('avatar', image.path));
-//
-//   http.StreamedResponse response = await request.send();
-//
-//   if (response.statusCode == 200) {
-//   print(await response.stream.bytesToString());
-//   }
-//     else {
-//   print(response.reasonPhrase);
-//   }
-//
-//   }
-//
-//   void pickImage()
-//   async{
-//     image = await ImagePicker().pickImage(source: ImageSource.camera);
-//     print("image = ");
-//     print(image);
-//     if(image==null)
-//       {
-//         print("null");
-//       }
-//     else{
-//       final imageres = File(image.path);
-//       print(imageres);
-//       setState(() {
-//         file = imageres;
-//         print("file = ");
-//         print(image.path);
-//         print(file.runtimeType);
-//       });
-//     }
-//   }
-//   var imageFile;
-//
-//
-//   void getVideo()
-//   async {
-//     var request = http.MultipartRequest('GET', Uri.parse('http://10.0.2.2:4000'));
-//     request.files.add(await http.MultipartFile.fromPath('avatar', image.path));
-//
-//     http.StreamedResponse response = await request.send();
-//
-//     if (response.statusCode == 200) {
-//       print(await response.stream.bytesToString());
-//     }
-//     else {
-//       print(response.reasonPhrase);
-//     }
-//
-//   }
-//
-//   void getImage()
-//   async{
-//     var request = http.MultipartRequest('GET', Uri.parse('http://10.0.2.2:5000/image'));
-//
-//   var result;
-//     http.StreamedResponse response = await request.send();
-//
-//     if (response.statusCode == 200) {
-//       result = await response.stream.bytesToString();
-//       print("result = ");
-//       print(result);
-//       setState(() {
-//         imageFile = File(result.image);
-//         print(imageFile);
-//       });
-//     }
-//     else {
-//     print(response.reasonPhrase);
-//     }
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return SafeArea(
-//       child: Scaffold(
-//         resizeToAvoidBottomInset: true,
-//           body: LayoutBuilder(
-//             builder: (context, constraints) {
-//               return Container(
-//                 padding: EdgeInsets.symmetric(horizontal: 20),
-//                 height: constraints.maxHeight,
-//                 width: constraints.maxWidth,
-//                 alignment: Alignment.center,
-//                 child: SingleChildScrollView(
-//                   child: Column(
-//                     mainAxisAlignment: MainAxisAlignment.center,
-//                     children: [
-//                       Form(
-//                           child: Column(
-//                             children: [
-//                               CircleAvatar(
-//                                 radius: 50,
-//                                 backgroundColor: Colors.blue,
-//                                 child: Stack(
-//                                 children: [
-//                                   CircleAvatar(
-//                                     radius: 50,
-//                                     child: image==null?SizedBox():Image.file(file),
-//                                   ),
-//                                   Positioned(child: CircleAvatar(
-//                                     child: Icon(Icons.camera_alt_outlined,color: Colors.white,),
-//                                     radius: 20,
-//                                     backgroundColor: Colors.blue,
-//                                   ),top: 60,right: 0,)
-//                                 ],
-//                                 ),
-//                               ),
-//
-//                               // image==null?SizedBox():Image.file(file),
-//                               Text("Instagram",style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold),),
-//                               SizedBox(height: 40,),
-//                               TextFormField(
-//                                 cursorColor: Colors.black,
-//                                 decoration: InputDecoration(
-//                                     hintText: 'Email ',
-//                                     focusedBorder: OutlineInputBorder(
-//                                         borderSide: BorderSide(
-//                                             color: Colors.blue,
-//                                             width: 2
-//                                         )
-//                                     ),
-//                                     enabledBorder: OutlineInputBorder(
-//                                         borderSide: BorderSide(
-//                                             color: Colors.grey,
-//                                             width: 2
-//                                         )
-//                                     )
-//                                 ),
-//                               ),
-//                               SizedBox(height: 20,),
-//                               TextFormField(
-//                                 cursorColor: Colors.black,
-//                                 decoration: InputDecoration(
-//                                     hintText: 'Phone Number',
-//                                     focusedBorder: OutlineInputBorder(
-//                                         borderSide: BorderSide(
-//                                             color: Colors.blue,
-//                                             width: 2
-//                                         )
-//                                     ),
-//                                     enabledBorder: OutlineInputBorder(
-//                                         borderSide: BorderSide(
-//                                             color: Colors.grey,
-//                                             width: 2
-//                                         )
-//                                     )
-//                                 ),
-//                               ),
-//                               SizedBox(height: 20,),
-//                               TextFormField(
-//                                 cursorColor: Colors.black,
-//                                 decoration: InputDecoration(
-//                                     hintText: 'Username',
-//                                     focusedBorder: OutlineInputBorder(
-//                                         borderSide: BorderSide(
-//                                             color: Colors.blue,
-//                                             width: 2
-//                                         )
-//                                     ),
-//                                     enabledBorder: OutlineInputBorder(
-//                                         borderSide: BorderSide(
-//                                             color: Colors.grey,
-//                                             width: 2
-//                                         )
-//                                     )
-//                                 ),
-//                               ),
-//                               SizedBox(height: 20,),
-//                               MaterialButton(onPressed: (){
-//                                 print("REgister");
-//                                 // selectImage();
-//                                 // getVideo();
-//                                 postDetails();
-//                               },
-//                                 minWidth: constraints.maxWidth,
-//                                 child: Text("Register",style: TextStyle(color: Colors.white),),
-//                                 height: 40,color: Colors.blue,),
-//
-//                               MaterialButton(onPressed: (){
-//                                 print("upload");
-//                                 pickImage();
-//                               },
-//                               child: Text("Upload"),)
-//
-//                             ],
-//                           )
-//                       )
-//                     ],
-//                   ),
-//                 ),
-//               );
-//             }),
-//       ),
-//     );
-//   }
-// }
-//
-//
-//
-// class LoginPage extends StatefulWidget {
-//   const LoginPage({Key? key}) : super(key: key);
-//
-//   @override
-//   State<LoginPage> createState() => _LoginPageState();
-// }
-//
-// class _LoginPageState extends State<LoginPage> {
-//   final _globalKey = GlobalKey<FormState>();
-//   @override
-//   Widget build(BuildContext context) {
-//     return SafeArea(
-//       child: Scaffold(
-//         resizeToAvoidBottomInset: false,
-//         body: LayoutBuilder(
-//           builder: (context, constraints) {
-//               return Container(
-//                 width: constraints.maxWidth,
-//                 height: constraints.maxHeight,
-//                 padding: EdgeInsets.symmetric(horizontal: 20),
-//                 child: Column(
-//                   mainAxisAlignment: MainAxisAlignment.center,
-//                   crossAxisAlignment: CrossAxisAlignment.center,
-//                   children: [
-//                     Form(
-//                       key: _globalKey,
-//                       child: Column(
-//                         children: [
-//                           Text("Instagram",style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold),),
-//                           SizedBox(height: 60,),
-//                           TextFormField(
-//                             cursorColor: Colors.black,
-//                            decoration: InputDecoration(
-//                              hintText: 'Email ',
-//                              focusedBorder: OutlineInputBorder(
-//                                borderSide: BorderSide(
-//                                  color: Colors.blue,
-//                                  width: 2
-//                                )
-//                              ),
-//                              enabledBorder: OutlineInputBorder(
-//                                borderSide: BorderSide(
-//                                  color: Colors.grey,
-//                                  width: 2
-//                                )
-//                              )
-//                            ),
-//                           ),
-//                           SizedBox(height: 20,),
-//                           TextFormField(
-//                             decoration: InputDecoration(
-//                                 hintText: 'Password',focusedBorder: OutlineInputBorder(
-//                                 borderSide: BorderSide(
-//                                     color: Colors.blue,
-//                                     width: 2
-//                                 )
-//                             ),
-//                                 enabledBorder: OutlineInputBorder(
-//                                     borderSide: BorderSide(
-//                                         color: Colors.grey,
-//                                         width: 2
-//                                     )
-//                                 )
-//                             ),
-//                           ),
-//                           SizedBox(height: 20,),
-//                           MaterialButton(
-//                             height: 40,
-//                             minWidth: constraints.maxWidth,
-//                             color: Colors.blue,
-//                             onPressed: (){},
-//                             child: Text("Log In",style: TextStyle(color: Colors.white),),
-//                           ),
-//                           TextButton(
-//                             child: Text("Forgot Password?"),
-//                             onPressed: (){},
-//                           ),
-//                           Row(
-//                             mainAxisAlignment: MainAxisAlignment.center,
-//                             children: [
-//                               Text("Don't have an account?"),
-//                               SizedBox(width: 4,),
-//                               InkWell(
-//                                 onTap: (){},
-//                                 child: Text("Sign Up",style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold),),
-//                               )
-//                             ],
-//                           )
-//                         ],
-//                       ),
-//                     )
-//                   ],
-//                 )
-//               );
-//           }),
-//         )
-//     );
-//   }
-// }
-
-
-
-
-
 
 class StoryPage2 extends StatefulWidget {
   const StoryPage2({Key? key}) : super(key: key);
@@ -808,6 +463,353 @@ class _StoryPage2State extends State<StoryPage2> with SingleTickerProviderStateM
         ));
       }
   }
+
+
+
+
+//
+// class RegisterPage extends StatefulWidget {
+//   const RegisterPage({Key? key}) : super(key: key);
+//
+//   @override
+//   State<RegisterPage> createState() => _RegisterPageState();
+// }
+//
+// class _RegisterPageState extends State<RegisterPage> {
+//
+//
+//   void postDetails()
+//   async
+//   {
+//     var request = http.MultipartRequest('POST', Uri.parse('http://10.0.2.2:5000/RegisterPage'));
+//     request.fields.addAll({
+//       'Username': 'srinivas',
+//       'Password': '******',
+//       'EmailID': 'srinivaskokku3372@gmail.com',
+//       'MobileNumber': '123456789'
+//     });
+//     request.files.add(await http.MultipartFile.fromPath('ProfileImage', image.path));
+//
+//     http.StreamedResponse response = await request.send();
+//
+//     if (response.statusCode == 200) {
+//       print(await response.stream.bytesToString());
+//     }
+//     else {
+//       print(response.reasonPhrase);
+//     }
+//
+//
+//   }
+//   var image;
+//   var file;
+//
+//   void selectImage()
+//   async{
+//     var request = http.MultipartRequest('POST', Uri.parse('http://10.0.2.2:4000'));
+//     request.files.add(await http.MultipartFile.fromPath('avatar', image.path));
+//
+//   http.StreamedResponse response = await request.send();
+//
+//   if (response.statusCode == 200) {
+//   print(await response.stream.bytesToString());
+//   }
+//     else {
+//   print(response.reasonPhrase);
+//   }
+//
+//   }
+//
+//   void pickImage()
+//   async{
+//     image = await ImagePicker().pickImage(source: ImageSource.camera);
+//     print("image = ");
+//     print(image);
+//     if(image==null)
+//       {
+//         print("null");
+//       }
+//     else{
+//       final imageres = File(image.path);
+//       print(imageres);
+//       setState(() {
+//         file = imageres;
+//         print("file = ");
+//         print(image.path);
+//         print(file.runtimeType);
+//       });
+//     }
+//   }
+//   var imageFile;
+//
+//
+//   void getVideo()
+//   async {
+//     var request = http.MultipartRequest('GET', Uri.parse('http://10.0.2.2:4000'));
+//     request.files.add(await http.MultipartFile.fromPath('avatar', image.path));
+//
+//     http.StreamedResponse response = await request.send();
+//
+//     if (response.statusCode == 200) {
+//       print(await response.stream.bytesToString());
+//     }
+//     else {
+//       print(response.reasonPhrase);
+//     }
+//
+//   }
+//
+//   void getImage()
+//   async{
+//     var request = http.MultipartRequest('GET', Uri.parse('http://10.0.2.2:5000/image'));
+//
+//   var result;
+//     http.StreamedResponse response = await request.send();
+//
+//     if (response.statusCode == 200) {
+//       result = await response.stream.bytesToString();
+//       print("result = ");
+//       print(result);
+//       setState(() {
+//         imageFile = File(result.image);
+//         print(imageFile);
+//       });
+//     }
+//     else {
+//     print(response.reasonPhrase);
+//     }
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return SafeArea(
+//       child: Scaffold(
+//         resizeToAvoidBottomInset: true,
+//           body: LayoutBuilder(
+//             builder: (context, constraints) {
+//               return Container(
+//                 padding: EdgeInsets.symmetric(horizontal: 20),
+//                 height: constraints.maxHeight,
+//                 width: constraints.maxWidth,
+//                 alignment: Alignment.center,
+//                 child: SingleChildScrollView(
+//                   child: Column(
+//                     mainAxisAlignment: MainAxisAlignment.center,
+//                     children: [
+//                       Form(
+//                           child: Column(
+//                             children: [
+//                               CircleAvatar(
+//                                 radius: 50,
+//                                 backgroundColor: Colors.blue,
+//                                 child: Stack(
+//                                 children: [
+//                                   CircleAvatar(
+//                                     radius: 50,
+//                                     child: image==null?SizedBox():Image.file(file),
+//                                   ),
+//                                   Positioned(child: CircleAvatar(
+//                                     child: Icon(Icons.camera_alt_outlined,color: Colors.white,),
+//                                     radius: 20,
+//                                     backgroundColor: Colors.blue,
+//                                   ),top: 60,right: 0,)
+//                                 ],
+//                                 ),
+//                               ),
+//
+//                               // image==null?SizedBox():Image.file(file),
+//                               Text("Instagram",style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold),),
+//                               SizedBox(height: 40,),
+//                               TextFormField(
+//                                 cursorColor: Colors.black,
+//                                 decoration: InputDecoration(
+//                                     hintText: 'Email ',
+//                                     focusedBorder: OutlineInputBorder(
+//                                         borderSide: BorderSide(
+//                                             color: Colors.blue,
+//                                             width: 2
+//                                         )
+//                                     ),
+//                                     enabledBorder: OutlineInputBorder(
+//                                         borderSide: BorderSide(
+//                                             color: Colors.grey,
+//                                             width: 2
+//                                         )
+//                                     )
+//                                 ),
+//                               ),
+//                               SizedBox(height: 20,),
+//                               TextFormField(
+//                                 cursorColor: Colors.black,
+//                                 decoration: InputDecoration(
+//                                     hintText: 'Phone Number',
+//                                     focusedBorder: OutlineInputBorder(
+//                                         borderSide: BorderSide(
+//                                             color: Colors.blue,
+//                                             width: 2
+//                                         )
+//                                     ),
+//                                     enabledBorder: OutlineInputBorder(
+//                                         borderSide: BorderSide(
+//                                             color: Colors.grey,
+//                                             width: 2
+//                                         )
+//                                     )
+//                                 ),
+//                               ),
+//                               SizedBox(height: 20,),
+//                               TextFormField(
+//                                 cursorColor: Colors.black,
+//                                 decoration: InputDecoration(
+//                                     hintText: 'Username',
+//                                     focusedBorder: OutlineInputBorder(
+//                                         borderSide: BorderSide(
+//                                             color: Colors.blue,
+//                                             width: 2
+//                                         )
+//                                     ),
+//                                     enabledBorder: OutlineInputBorder(
+//                                         borderSide: BorderSide(
+//                                             color: Colors.grey,
+//                                             width: 2
+//                                         )
+//                                     )
+//                                 ),
+//                               ),
+//                               SizedBox(height: 20,),
+//                               MaterialButton(onPressed: (){
+//                                 print("REgister");
+//                                 // selectImage();
+//                                 // getVideo();
+//                                 postDetails();
+//                               },
+//                                 minWidth: constraints.maxWidth,
+//                                 child: Text("Register",style: TextStyle(color: Colors.white),),
+//                                 height: 40,color: Colors.blue,),
+//
+//                               MaterialButton(onPressed: (){
+//                                 print("upload");
+//                                 pickImage();
+//                               },
+//                               child: Text("Upload"),)
+//
+//                             ],
+//                           )
+//                       )
+//                     ],
+//                   ),
+//                 ),
+//               );
+//             }),
+//       ),
+//     );
+//   }
+// }
+//
+//
+//
+// class LoginPage extends StatefulWidget {
+//   const LoginPage({Key? key}) : super(key: key);
+//
+//   @override
+//   State<LoginPage> createState() => _LoginPageState();
+// }
+//
+// class _LoginPageState extends State<LoginPage> {
+//   final _globalKey = GlobalKey<FormState>();
+//   @override
+//   Widget build(BuildContext context) {
+//     return SafeArea(
+//       child: Scaffold(
+//         resizeToAvoidBottomInset: false,
+//         body: LayoutBuilder(
+//           builder: (context, constraints) {
+//               return Container(
+//                 width: constraints.maxWidth,
+//                 height: constraints.maxHeight,
+//                 padding: EdgeInsets.symmetric(horizontal: 20),
+//                 child: Column(
+//                   mainAxisAlignment: MainAxisAlignment.center,
+//                   crossAxisAlignment: CrossAxisAlignment.center,
+//                   children: [
+//                     Form(
+//                       key: _globalKey,
+//                       child: Column(
+//                         children: [
+//                           Text("Instagram",style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold),),
+//                           SizedBox(height: 60,),
+//                           TextFormField(
+//                             cursorColor: Colors.black,
+//                            decoration: InputDecoration(
+//                              hintText: 'Email ',
+//                              focusedBorder: OutlineInputBorder(
+//                                borderSide: BorderSide(
+//                                  color: Colors.blue,
+//                                  width: 2
+//                                )
+//                              ),
+//                              enabledBorder: OutlineInputBorder(
+//                                borderSide: BorderSide(
+//                                  color: Colors.grey,
+//                                  width: 2
+//                                )
+//                              )
+//                            ),
+//                           ),
+//                           SizedBox(height: 20,),
+//                           TextFormField(
+//                             decoration: InputDecoration(
+//                                 hintText: 'Password',focusedBorder: OutlineInputBorder(
+//                                 borderSide: BorderSide(
+//                                     color: Colors.blue,
+//                                     width: 2
+//                                 )
+//                             ),
+//                                 enabledBorder: OutlineInputBorder(
+//                                     borderSide: BorderSide(
+//                                         color: Colors.grey,
+//                                         width: 2
+//                                     )
+//                                 )
+//                             ),
+//                           ),
+//                           SizedBox(height: 20,),
+//                           MaterialButton(
+//                             height: 40,
+//                             minWidth: constraints.maxWidth,
+//                             color: Colors.blue,
+//                             onPressed: (){},
+//                             child: Text("Log In",style: TextStyle(color: Colors.white),),
+//                           ),
+//                           TextButton(
+//                             child: Text("Forgot Password?"),
+//                             onPressed: (){},
+//                           ),
+//                           Row(
+//                             mainAxisAlignment: MainAxisAlignment.center,
+//                             children: [
+//                               Text("Don't have an account?"),
+//                               SizedBox(width: 4,),
+//                               InkWell(
+//                                 onTap: (){},
+//                                 child: Text("Sign Up",style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold),),
+//                               )
+//                             ],
+//                           )
+//                         ],
+//                       ),
+//                     )
+//                   ],
+//                 )
+//               );
+//           }),
+//         )
+//     );
+//   }
+// }
+
+
+
 
 
 
